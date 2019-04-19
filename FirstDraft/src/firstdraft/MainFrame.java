@@ -13,11 +13,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -451,6 +459,93 @@ public class MainFrame extends javax.swing.JFrame {
         g.drawLine(900, hostY, 825, hubY);
     }
     
+public void createProperties(){
+        
+        File configFile = new File("configurations.cfg");
+ 
+        try {
+            Properties props = new Properties();
+            props.setProperty("host", "www.codejava.net");
+            FileWriter writer = new FileWriter(configFile);
+            props.store(writer, "host settings");
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            // file does not exist
+        } catch (IOException ex) {
+            // I/O error
+        }
+    }
+
+private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                             
+
+        
+
+    }                                           
+
+ 
+
+    private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                              
+
+        Writer writer = new Writer() {
+            @Override
+            public void write(char[] chars, int i, int i1) throws IOException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void flush() throws IOException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void close() throws IOException {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+
+        String finalstr;
+
+        finalstr = "";
+
+     JFrame parentFrame = new JFrame();
+
+    JFileChooser fileChooser = new JFileChooser();
+
+    fileChooser.setDialogTitle("Specify a file to save");  
+
+ 
+
+    int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+    if (userSelection == JFileChooser.APPROVE_OPTION) {
+
+    File fileToSave = fileChooser.getSelectedFile();
+
+    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+
+}
+
+    }                                             
+
+ 
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                             
+
+        //about menu option, displays group info
+
+        JFrame frame = new JFrame("About");
+
+        String aboutString =
+
+        "Created for Sun Weiqing for CSET 3600\n"
+
+        + "Group 6 consists of the following:\n"
+
+        + "Daniel Smith\nYousef Alsayegh\nNaba Rizvi\nCary Walsh";
+
+        JOptionPane.showMessageDialog(frame, aboutString);
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -486,7 +581,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHostButton;
     private javax.swing.JButton addHubButton;
@@ -505,3 +600,4 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> switchList;
     // End of variables declaration//GEN-END:variables
 }
+
