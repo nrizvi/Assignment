@@ -465,7 +465,7 @@ public void createProperties(){
  
         try {
             Properties props = new Properties();
-            props.setProperty("host", "www.codejava.net");
+            props.setProperty("host", "");
             FileWriter writer = new FileWriter(configFile);
             props.store(writer, "host settings");
             writer.close();
@@ -527,7 +527,7 @@ private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
 
     }                                             
 
- 
+cd ..
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                             
 
